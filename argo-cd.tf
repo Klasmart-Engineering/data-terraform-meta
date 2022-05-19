@@ -4,7 +4,7 @@
 
 resource "argocd_project" "data_offering" {
   metadata {
-    name      = "data-offering"
+    name      = local.argocd_project_name
     namespace = "argocd"
   }
 

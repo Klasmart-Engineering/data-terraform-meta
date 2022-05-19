@@ -22,4 +22,5 @@ locals {
   tools_cluster_endpoint                      = local.dep_tools.cluster_endpoint
   # tools_cluster_id                            = local.dep_tools.cluster_id
   tools_kubeconfig_certificate_authority_data = local.dep_tools.kubeconfig_certificate_authority_data
+  argocd_project_name = "data-offering"
 }
