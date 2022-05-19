@@ -1,17 +1,17 @@
 variable workspace_name {
     description = "The workspace name"
-    type        = "string"
+    type        = string
 }
 
 variable workspace_description {
     description = "A brief description for the offering"
-    type        = "string"
+    type        = string
     default     = "Offering workspace"
 }
 
 variable env_repo {
     description = "Service/Offering environment repo"
-    type        = "string"
+    type        = string
 }
 
 # External sources variables
