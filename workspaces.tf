@@ -1,5 +1,5 @@
 module "workspaces" {
-  source = "../tfe-workspace-module"
+  source = "./tfe-workspace-module"
 
   # Module inputs here
   region              = "eu-west-2"
