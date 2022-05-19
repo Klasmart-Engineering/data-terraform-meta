@@ -1,27 +1,27 @@
-# module "svc-workspaces" {
-#   # Module import info here
-#   source  = "app.terraform.io/kidsloop-infrastructure/svc-ws-kidskube/tfe"
-#   version = "1.4.1"
+module "workspaces" {
+  source = "../tfe-workspace-module"
 
-#   # Module inputs here
-#   region              = local.region
-#   project_environment = "landingzone"
-#   project_region      = "uk"
-#   service_owner       = "Infra"
+  # Module inputs here
+  region              = "eu-west-2"
+  project_environment = "apifactory"
+  project_region      = "uk"
+  service_owner       = "Infra"
 
-#   domain              = "landing-zone.kidsloop.live"
-#   env_repo_default_branch = "main"
-#   working_directory       = basename(abspath("."))
+  workspace_name          = "data-services-apifactory-uk"
+  env_repo                = "KL-Engineering/data-terraform-env"
+  domain                  = "apifactory.kidsloop.live"
+  env_repo_default_branch = "main"
+  working_directory       = "apifactory/uk"
 
-#   # RBAC settings
-#   tfe_team_access_permissions = {
-#     "Infrastructure" = "admin"
-#     "sso"            = "read"
-#   }
-#   # Notification settings
-#   notify_triggers = ["run:needs_attention", "run:applying", "run:completed", "run:errored"]
+  # RBAC settings
+  tfe_team_access_permissions = {
+    "Infrastructure" = "admin"
+    "sso"            = "read"
+  }
+  # Notification settings
+  notify_triggers = ["run:needs_attention", "run:applying", "run:completed", "run:errored"]
 
-#   providers = {
-#     tfe        = tfe
-#   }
-# }
+  providers = {
+    tfe        = tfe
+  }
+}
