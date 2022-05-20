@@ -16,6 +16,15 @@ resource "argocd_project" "data_offering" {
       }
     }
 
+    # Required to allow tls certificates to be created under the istio-system namespace
+    dynamic "destination" {
+      for_each = var.kubernetes_server_urls
+      content {
+        namespace = "istio-system"
+        server = destination.value["url"]
+      }
+    }
+
     cluster_resource_whitelist {
       group = "*"
       kind  = "*"
