@@ -5,7 +5,7 @@ variable "kubernetes_server_urls" {
     }))
 
     description = "All the target Kubernetes cluster urls"
-    
+
     default = [{
       environment = "apifactory-uk"
       url = "https://EFC4B481A0B23459D26FE96D8985F7E3.gr7.eu-west-2.eks.amazonaws.com"
@@ -15,7 +15,10 @@ variable "kubernetes_server_urls" {
 variable "helm_source_repositories" {
   description = "A list of repositories that the ArgoCD project is whitelisted for"
   type        = list(string)
-  default = ["git@github.com/kl-engineering/data-manifests.git"]
+  default = [
+    "git@github.com/kl-engineering/data-manifests.git",
+    "https://raw.githubusercontent.com/kl-engineering/microgateway-base-helm/main",
+  ]
 }
 
 
