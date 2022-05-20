@@ -8,11 +8,12 @@ resource "argocd_project" "data_offering" {
     description  = "Deployment project group for Data product offerings."
     source_repos = var.helm_source_repositories
 
-    # TODO: for_each see if we can automate this?
-    destination {
+    dynamic "destination" {
       for_each = var.kubernetes_server_urls
-      server    = each.url.value
-      namespace = local.offering_namespace
+      content {
+        namespace = local.offering_namespace
+        server = destination.value["url"]
+      }
     }
 
     cluster_resource_whitelist {
