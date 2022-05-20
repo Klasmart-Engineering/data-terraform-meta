@@ -18,6 +18,7 @@ variable "helm_source_repositories" {
   default = [
     "git@github.com/kl-engineering/data-manifests.git",
     "https://raw.githubusercontent.com/kl-engineering/microgateway-base-helm/main",
+    "https://raw.githubusercontent.com/kl-engineering/microgateway-istio-base-helm/main",
   ]
 }
 
