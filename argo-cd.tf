@@ -1,7 +1,3 @@
-// Apply Projects
-// Apply ApplicationSet (if we go down the applicationset route)
-// Credentials for ArgoCD helm repo
-
 resource "argocd_project" "data_offering" {
   metadata {
     name      = local.argocd_project_name
@@ -10,20 +6,20 @@ resource "argocd_project" "data_offering" {
 
   spec {
     description  = "Deployment project group for Data product offerings."
-    source_repos = ["*"]
-    # TODO: Scope this to KL-Engineering
+    source_repos = var.helm_source_repositories
 
-    # TODO: for_each loop for each kubernetes cluster
-    # Pull
+    # TODO: for_each see if we can automate this?
     destination {
-      server    = var.kubernetes_server_url
-      namespace = "*"
+      for_each = var.kubernetes_server_urls
+      server    = each.url.value
+      namespace = local.offering_namespace
     }
 
     cluster_resource_whitelist {
       group = "*"
       kind  = "*"
     }
+
     orphaned_resources {
       warn = true
       #   ignore {
